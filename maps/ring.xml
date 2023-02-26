@@ -1,7 +1,14 @@
 
 <Map> <!-- карта -->
-    <mapname>railway1</mapname>
-    <size>20,10</size> <!-- количество секций в карте ширина и высота -->
+    <mapname>railway2</mapname>
+    <size>30,20</size> <!-- количество секций в карте ширина и высота -->
+    <row> <!-- 1 строка -->
+        <col> <!--  -->
+            <num>30</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+    </row>
+
     <row> <!-- 1 строка -->
         <col> <!--  -->
             <num>1</num> <!-- кол-во одинаковых подряд секций -->
@@ -12,23 +19,7 @@
             <name>turn_rb</name>
         </col>
         <col>
-            <num>3</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_lb_rb_lr</name>
-        </col>
-        <col>
-            <num>4</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_lb_rb_lr</name>
-        </col>
-        <col>
-            <num>7</num>
+            <num>26</num>
             <name>line_lr</name>
         </col>
         <col>
@@ -42,45 +33,17 @@
     </row>
     
     <row> <!-- 2 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
         <col>
             <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
             <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary2</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>4</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>5</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>2</num>
-            <name>notprimary2</name>
         </col>
         <col>
             <num>1</num>
@@ -93,69 +56,21 @@
     </row>
     
     <row> <!-- 3 -->
-        <col>
-            <num>1</num>
-            <name>empty</name>
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>line_tb</name>
         </col>
         <col>
-            <num>1</num>
-            <name>notprimary2</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary2</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>2</num>
+            <num>26</num>
             <name>empty</name>
         </col>
         <col>
             <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
             <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>3</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>turn_rb</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_lt_lb_tb</name>
         </col>
         <col>
             <num>1</num>
@@ -164,56 +79,16 @@
     </row>
     
     <row> <!-- 4 -->
-        <col>
-            <num>1</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_rt_rb_tb</name>
-        </col>
-        <col>
-            <num>3</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <name>arrow_lt_lb_tb</name>
-            <num>1</num>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>2</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>line_tb</name>
         </col>
         <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>3</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
+            <num>26</num>
             <name>empty</name>
         </col>
         <col>
@@ -227,40 +102,16 @@
     </row>
     
     <row> <!-- 5 -->
-        <col>
-            <num>1</num>
-            <name>empty</name>
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>line_tb</name>
         </col>
         <col>
-            <num>3</num>
-            <name>notprimary3</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>4</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>5</num>
-            <name>notprimary1</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
+            <num>26</num>
             <name>empty</name>
         </col>
         <col>
@@ -274,44 +125,16 @@
     </row>
     
     <row> <!-- 6 -->
-        <col>
-            <num>1</num>
-            <name>empty</name>
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>line_tb</name>
         </col>
         <col>
-            <num>3</num>
-            <name>notprimary3</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>turn_rt</name>
-        </col>
-        <col>
-            <num>4</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_lt_rt_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_lb_rb_lr</name>
-        </col>
-        <col>
-            <num>4</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>turn_lt</name>
-        </col>
-        <col>
-            <num>1</num>
+            <num>26</num>
             <name>empty</name>
         </col>
         <col>
@@ -325,41 +148,17 @@
     </row>
     
     <row> <!-- 7 -->
-        <col>
-            <num>1</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_rt_rb_tb</name>
-        </col>
-        <col>
-            <num>3</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>turn_lb</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>3</num>
-            <name>notprimary3</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>empty</name>
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>line_tb</name>
         </col>
         <col>
-            <num>6</num>
-            <name>notprimary3</name>
+            <num>26</num>
+            <name>empty</name>
         </col>
         <col>
             <num>1</num>
@@ -372,49 +171,17 @@
     </row>
     
     <row> <!-- 8 -->
-        <col>
-            <num>1</num>
-            <name>empty</name>
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>line_tb</name>
         </col>
         <col>
-            <num>3</num>
-            <name>notprimary2</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
+            <num>26</num>
             <name>empty</name>
-        </col>
-        <col>
-            <num>3</num>
-            <name>notprimary3</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary3</name>
-        </col>
-        <col>
-            <num>4</num>
-            <name>notprimary4</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>notprimary3</name>
         </col>
         <col>
             <num>1</num>
@@ -426,42 +193,18 @@
         </col>
     </row>
     
-    <row> <!-- 9 -->
-        <col>
-            <num>1</num>
-            <name>empty</name>
+    <row> <!-- 8 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>line_tb</name>
         </col>
         <col>
-            <num>3</num>
-            <name>notprimary2</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>1</num>
+            <num>26</num>
             <name>empty</name>
-        </col>
-        <col>
-            <num>3</num>
-            <name>notprimary3</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>empty</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>line_tb</name>
-        </col>
-        <col>
-            <num>6</num>
-            <name>notprimary3</name>
         </col>
         <col>
             <num>1</num>
@@ -474,32 +217,223 @@
     </row>
     
     <row> <!-- 10 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
         <col>
             <num>1</num>
             <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 11 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 12 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 13 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 14 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 14 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 14 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 14 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+    
+    <row> <!-- 14 -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>26</num>
+            <name>empty</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>line_tb</name>
+        </col>
+        <col>
+            <num>1</num>
+            <name>empty</name>
+        </col>
+    </row>
+
+    <row> <!-- 1 строка -->
+        <col> <!--  -->
+            <num>1</num> <!-- кол-во одинаковых подряд секций -->
+            <name>empty</name> <!-- имя спрайта -->
         </col>
         <col>
             <num>1</num>
             <name>turn_rt</name>
         </col>
         <col>
-            <num>3</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_lt_rt_lr</name>
-        </col>
-        <col>
-            <num>5</num>
-            <name>line_lr</name>
-        </col>
-        <col>
-            <num>1</num>
-            <name>arrow_lt_rt_lr</name>
-        </col>
-        <col>
-            <num>6</num>
+            <num>26</num>
             <name>line_lr</name>
         </col>
         <col>
@@ -512,9 +446,7 @@
         </col>
     </row>
 </Map>
-
-
-
+    
 
 
 

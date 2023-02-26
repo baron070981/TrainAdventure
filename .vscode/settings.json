@@ -27,6 +27,7 @@
         "pulya",
         "pygame",
         "rwdata",
+        "rwelems",
         "sourcesdata",
         "straightsections"
     ]

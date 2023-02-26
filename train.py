@@ -66,8 +66,8 @@ class Clip:
 
 class Locomotive(pygame.sprite.Sprite):
     
-    def __init__(self, pos, size, left, up=None, 
-                 right=None, down=None, speed=3,  
+    def __init__(self, left, up=None, right=None, down=None, 
+                 pos=None, size=None, speed=3,  
                  direct=RWDirection.DIR_LEFT, decrease=1):
         super().__init__()
         self.__pos = pos
@@ -88,6 +88,15 @@ class Locomotive(pygame.sprite.Sprite):
         self.__image = self.__images[direct].copy()
         self.image = pygame.transform.scale(self.__image.copy(), (size, size))
         self.rect = self.image.get_rect(center=pos)
+    
+    
+    def set_attrs(self, **kwargs):
+        size = kwargs.get('size', None)
+        if size is not None:
+            self.size = size
+            self.pos = self.rect.center
+            self.image = pygame.transform.scale(self.image, (self.size, self.size))
+            self.rect = self.image.get_rect(x=self.pos[0], y=self.pos[1])
     
     
     def set_direct(self, direct):

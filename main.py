@@ -11,9 +11,9 @@ from train import *
 from menu import *
 from bonuses import *
 import sourcesdata as sd
-from explosions import Explosion
 from infoprocess import *
 from mtimes import Signal
+import explosions
 
 pygame.init()
 
@@ -36,7 +36,8 @@ main_bg = bgimage.copy() # текущий фон
 
 rw_group = pygame.sprite.Group() # группа для жд путей
 menu_group = pygame.sprite.Group() # группа мимникарт в меню
-enemy_group = pygame.sprite.Group()
+enemy_group = pygame.sprite.Group() # группа противников
+bonus_group = pygame.sprite.Group() # группа бонусов
 
 # создание меню
 menu = Menu(SCREEN_SIZE)
@@ -44,8 +45,7 @@ menu = Menu(SCREEN_SIZE)
 menu_data = menu.get_data(sd.plug)
 menu.create_menu(menu_group)
 
-
-mf = MapFile(sd.MAPS / 'land.xml')
+mf = MapFile(list(menu_data.keys())[0])
 map_size, mapname = mf.map_data
 map_content = mf.content
 
@@ -55,75 +55,59 @@ elems.get_sections_coords()
 data = sd.rwdata
 elems.create_elements(data, rw_group)
 
-
+# получение списка элементов только прямых участков
 straightsections = list(filter(lambda x: x.name in ['line_lr', 'line_tb'], list(rw_group)))
-rw_elem = random.choice(straightsections)
-pos = rw_elem.rect.center
 
-
+# создание объекта паравозика
 loco_left_surf = pygame.image.load(sd.loco_left_src).convert_alpha()
 loco_right_surf = pygame.image.load(sd.loco_right_src).convert_alpha()
 loco_up_surf = pygame.image.load(sd.loco_up_src).convert_alpha()
 loco_down_surf = pygame.image.load(sd.loco_down_src).convert_alpha()
 loco_size = elems.section_size - (elems.section_size // 5)
-loco = Locomotive(pos, loco_size, loco_left_surf, right=loco_right_surf, 
-                  up=loco_up_surf, down=loco_down_surf, 
-                  direct=rw_elem.direct, decrease=1)
+loco = Locomotive(loco_left_surf, right=loco_right_surf, pos=(0,0), size=100,
+                  up=loco_up_surf, down=loco_down_surf, decrease=1)
 
-
-rw_elem = random.choice(straightsections)
-pos = rw_elem.rect.center
+# создание surfce'ов паравозиков-врагов
 loco_enemy1_left = pygame.image.load(sd.enemy1_left_src).convert_alpha()
 loco_enemy1_right = pygame.image.load(sd.enemy1_right_src).convert_alpha()
 loco_enemy1_up = pygame.image.load(sd.enemy1_up_src).convert_alpha()
 loco_enemy1_down = pygame.image.load(sd.enemy1_down_src).convert_alpha()
-loco_enemy1_size = elems.section_size - (elems.section_size // 5)
-loco_enemy1 = Locomotive(pos, loco_enemy1_size, loco_enemy1_left, right=loco_enemy1_right, 
-                         up=loco_enemy1_up, down=loco_enemy1_down, direct=rw_elem.direct)
 
-
-fire_ball = FireBall(sd.fire_ball, (300,300), (loco_size//2, loco_size//2), RWDirection.DIR_LEFT, speed=8)
+# объект пули
+fire_ball = FireBall(sd.fire_ball, (0, 0), (loco_size//4, loco_size//4), RWDirection.DIR_LEFT, speed=8)
 fire_ball.start_life_count = 50
 
+# обект взрыва
 x_y = elems.section_size + elems.section_size // 2
 expl_size = (x_y, x_y)
-explosion_surf = Explosion(expl_size, sd.explosion_data)
+explosion_surf = explosions.Explosion(expl_size, sd.explosion_data, speed=0.1)
 
+# обект отображающий кол-во жизней
 life_size = elems.section_size*5, elems.section_size//2 + elems.section_size//3
 loco_life = LocoLifeInfo((10,10), (elems.section_size*4, elems.section_size//2), 5, sd.lifes_data)
 
-bullet_info_size = (elems.section_size // 3, elems.section_size // 3)
-bullet_info = BulletsInfo((SCREEN_SIZE[0]-70, 20), bullet_info_size, str(sd.bullet_bonus_data[0]), 5)
+# объект отображающий оставшееся кол-во выстрелов
+tmp_size = int(elems.section_size / 100 * 55)
+bullet_info_size = (tmp_size, tmp_size)
+bullet_info = BulletsInfo((SCREEN_SIZE[0]-70, 10), bullet_info_size, str(sd.bullet_bonus_data[0]), 5)
 
+# обект отображающий кол-во собраных монет
+coins_info_size = bullet_info_size
+coins_info = CoinsInfo((SCREEN_SIZE[0]//2-20, 10), coins_info_size, str(sd.coins_bonus_data[0]), 0)
 
-rw_elem = random.choice(straightsections)
+# 
 positions = [e.rect.center for e in straightsections]
 random.shuffle(positions)
 pos = positions.pop()
-# bullet = BaseBonuse(speed_anim=4, idn='bullet')
-bullet = BaseBonuse('bullet')
-bullet.init_list(sd.bullet_bonus_data,(elems.section_size, elems.section_size), speed=.1)
-bullet.set_position(pos)
+bullet_bonus = BaseBonuse('bullet')
+bullet_bonus.init_list(sd.bullet_bonus_data,(elems.section_size, elems.section_size), speed=.1)
 
+# 
 pos = positions.pop()
-heart = BaseBonuse('heart')
-heart.init_list(sd.heart_bonus_data,(elems.section_size, elems.section_size), speed=.1)
-heart.set_position(pos)
+heart_bonus = BaseBonuse('heart')
+heart_bonus.init_list(sd.heart_bonus_data,(elems.section_size, elems.section_size), speed=.1)
 
-coins = []
-coins_pos = positions.copy()
-for i in range(5):
-    pos = coins_pos.pop()
-    coin = BaseBonuse('coin')
-    coin.init_list(sd.coins_bonus_data,(elems.section_size, elems.section_size), speed=.07)
-    coin.set_position(pos)
-    coins.append(coin)
-
-bonuse_group = pygame.sprite.Group()
-bonuse_group.add(bullet)
-bonuse_group.add(heart)
-[bonuse_group.add(c) for c in coins]
-
+# 
 ringing_sound = pygame.mixer.Sound(str(sd.ringing_sound))
 shot_sound = pygame.mixer.Sound(str(sd.shot_sound))
 explosion_sound = pygame.mixer.Sound(str(sd.explosion_sound))
@@ -132,20 +116,20 @@ train_sound.set_volume(.5)
 ch  = train_sound.play(-1)
 ch.pause()
 
-BONUS_PLAY = True
-SHOOT = False
-PLAY_SOUND = False
-LOCO_LIFE = True
-NUM_ENEMY = 5
-FLAG = True
-MENU = True
-PAUSE = False
-RESET_ARROW = 1000
-COUNT_BONUS = 300
-mouse_pos = None
+BONUS_PLAY = True 
+SHOOT = False # флаг разрешающий выстрел(False - можно)
+PLAY_SOUND = False # флаг проигрывания фоновой музыки
+LOCO_LIFE = True # флаг указывающий, что паравозик не погиб
+NUM_ENEMY = 5 # кол-во противников
+FLAG = True # флаг позволяющий сменять фоновое мзображение один раз, а не каждую итерацию в игровом цикле
+MENU = True # флаг указывающий, что открыто меню
+RESET_ARROW_TIMER = Signal(45) # таймер переключения стрелок через 45 сек.
+DELAY_ARROW_RESET = Signal(2) # задержка до следующей возможности переключить стрелки
+DELAY_ARROW_RESET.start()
+
 clock = pygame.time.Clock()
 
-RESET_ARROW_TIMER = Signal(15)
+
 
 # ====================================================================
 # =======================  ИГРОВОЙ ЦИКЛ  =============================
@@ -172,12 +156,19 @@ if __name__ == "__main__":
             MENU = False
             FLAG = True
             ch.unpause() # снятие фонового звука игры с паузы
+        elif not MENU and keys[pygame.K_r]:
+            if DELAY_ARROW_RESET.is_stop():
+                DELAY_ARROW_RESET.start()
+                for e in rw_group:
+                    if isinstance(e, RWArrow):
+                        e.reset_turn2()
         # выстрел
-        elif keys[pygame.K_SPACE] and not SHOOT:
+        elif not MENU and keys[pygame.K_SPACE] and not SHOOT:
             if loco.bullets > 0: # если у паравозика ести пули
                 fire_ball.direct = loco.direct
-                fire_ball.rect.x = loco.rect.x
-                fire_ball.rect.y = loco.rect.y
+                # fire_ball.rect.x = loco.rect.x
+                # fire_ball.rect.y = loco.rect.y
+                fire_ball.rect.center = loco.rect.center
                 loco.shoot() # убавление кол-ва пуль у паравозика
                 shot_sound.play()
                 SHOOT = True # флаг того, что выстрел произведен и пока он не сменится второй выстрел не произвести
@@ -189,10 +180,12 @@ if __name__ == "__main__":
             if MENU: # если открыто главное меню
                 # проход группе с миникартами
                 for panel in menu_group:
+                    
                     # проверка что позиция курсора совпадает с выбранной картой
                     if panel.is_collide(pos):
                         rw_group.empty() # очистка группы с элементами жд путей и другими элементами карты
                         enemy_group.empty() # очистка группы паравозиков-врагов
+                        bonus_group.empty()
                         mf = MapFile(str(panel.mapfile)) # загрузка файла с картой
                         map_size, mapname = mf.map_data
                         map_content = mf.content
@@ -201,10 +194,19 @@ if __name__ == "__main__":
                         elems.get_sections_coords()
                         elems.create_elements(data, rw_group)
                         
+                        explosion_surf.set_attrs(size=elems.section_size + elems.section_size)
+                        
+                        loco_size = elems.section_size - (elems.section_size // 5)
+                        loco.set_attrs(size=loco_size)
+                        loco.recovery_life()
+                        loco.reload_gun()
+                        
                         # список только прямых участков пути
                         straightsections = list(filter(lambda x: x.name in ['line_lr', 'line_tb'], list(rw_group)))
+                        rwelems = straightsections.copy()
+                        random.shuffle(rwelems)
                         # выбор случайного прямого участка
-                        rw_elem = random.choice(straightsections)
+                        rw_elem = rwelems.pop()
                         pos = rw_elem.rect.center
                         loco.current_pos = pos
                         # размещение паравозика на случайном выбраном участке
@@ -213,18 +215,35 @@ if __name__ == "__main__":
                         
                         # создание паравазиков-врагов и размещение их на случайных участках
                         for i in range(NUM_ENEMY):
-                            rw_elem = random.choice(straightsections)
+                            rw_elem = rwelems.pop()
                             pos = rw_elem.rect.center
-                            enemy = Locomotive(pos, loco_size, 
-                                               loco_enemy1_left, right=loco_enemy1_right, 
+                            enemy = Locomotive(loco_enemy1_left, right=loco_enemy1_right, 
                                                up=loco_enemy1_up, down=loco_enemy1_down, 
-                                               direct=rw_elem.direct, speed=2)
+                                               direct=rw_elem.direct, 
+                                               pos=pos, size=loco_size, speed=2)
                             enemy.current_pos = pos
                             enemy.set_direct(rw_elem.direct)
                             enemy.add(enemy_group)
+                        
+                        bullet_bonus.set_attrs(size=elems.section_size-20)
+                        bullet_bonus.set_position(rwelems.pop().rect.center)
+                        heart_bonus.set_attrs(size=elems.section_size-20)
+                        heart_bonus.set_position(rwelems.pop().rect.center)
+                        
+                        coins = []
+                        for i in range(5):
+                            coin_bonus = BaseBonuse('coin')
+                            coin_bonus.init_list(sd.coins_bonus_data,(elems.section_size//2, elems.section_size//2), speed=.07)
+                            coin_bonus.set_position(rwelems.pop().rect.center)
+                            coins.append(coin_bonus)
+                        
+                        bonus_group.add(bullet_bonus)
+                        bonus_group.add(heart_bonus)
+                        [bonus_group.add(c) for c in coins]
                         MENU = False
                         FLAG = False
                         main_bg = bgimage.copy()
+            
             else: # если идет игровой цикл
                 for e in rw_group:
                     # если курсор совпадает со жд стрелкой
@@ -265,6 +284,7 @@ if __name__ == "__main__":
         
         elif not MENU and LOCO_LIFE:
             RESET_ARROW_TIMER.start()
+            DELAY_ARROW_RESET.stop()
             rw_group.update()
             rw_group.draw(screen)
             
@@ -317,18 +337,23 @@ if __name__ == "__main__":
                     e.reset_turn()
             
             if BONUS_PLAY:
-                for b in bonuse_group:
+                for b in bonus_group:
                     if loco.is_collide(b.rect.center):
                         ringing_sound.play()
+                        pos = random.choice(straightsections).rect.center
                         match b.id_name:
                             case 'bullet':
-                                pos = random.choice(straightsections).rect.center
-                                bullet.set_position(pos)
+                                bullet_bonus.set_position(pos)
                                 loco.reload_gun()
                                 bullet_info.set_value(loco.bullets)
                             case 'heart':
                                 loco.recovery_life()
                                 loco_life.set_life(loco.life)
+                                heart_bonus.set_position(pos)
+                            case 'coin':
+                                b.set_position(pos)
+                                loco.coins += 1
+                                coins_info.set_value(loco.coins)
             
             
             loco.update()
@@ -336,9 +361,10 @@ if __name__ == "__main__":
             enemy_group.draw(screen)
             screen.blit(loco_life.image, (loco_life.rect.x, loco_life.rect.y))
             bullet_info.draw(screen)
+            coins_info.draw(screen)
             
             if BONUS_PLAY:
-                for bon in bonuse_group:
+                for bon in bonus_group:
                     screen.blit(bon.image, (bon.rect.x, bon.rect.y))
                     bon.iter_surfs()
             

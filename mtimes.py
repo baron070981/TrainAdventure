@@ -19,14 +19,12 @@ class Signal:
         if not self.__LOCK:
             if interval_sec is not None:
                 self.interval = interval_sec
-            print('start timer')
             self.current = time.monotonic()
             self.__LOCK = True
 
     def stop(self):
         if self.__LOCK:
             if time.monotonic() - self.current >= self.interval:
-                print('-- stop timer')
                 self.__LOCK = False
                 return True
         return False

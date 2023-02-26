@@ -11,6 +11,7 @@ from railway import (
 )
 
 CURRENT = Path(__file__).parent
+
 MEDIA = CURRENT / 'media'
 MMAPS = CURRENT / 'media' / 'minimaps'
 MAPS = CURRENT / 'maps'
@@ -54,29 +55,29 @@ enemy1_data = [enemy1_left_src, {'right': enemy1_right_src,
 
 explosion_data = [
     MEDIA / 'explosion' / 'explosion1.png',
-    MEDIA / 'explosion' / 'explosion1.png',
+    # MEDIA / 'explosion' / 'explosion1.png',
     MEDIA / 'explosion' / 'explosion2.png',
-    MEDIA / 'explosion' / 'explosion2.png',
+    # MEDIA / 'explosion' / 'explosion2.png',
     MEDIA / 'explosion' / 'explosion3.png',
-    MEDIA / 'explosion' / 'explosion3.png',
+    # MEDIA / 'explosion' / 'explosion3.png',
     MEDIA / 'explosion' / 'explosion4.png',
-    MEDIA / 'explosion' / 'explosion4.png',
+    # MEDIA / 'explosion' / 'explosion4.png',
     MEDIA / 'explosion' / 'explosion5.png',
-    MEDIA / 'explosion' / 'explosion5.png',
+    # MEDIA / 'explosion' / 'explosion5.png',
     MEDIA / 'explosion' / 'explosion6.png',
-    MEDIA / 'explosion' / 'explosion6.png',
+    # MEDIA / 'explosion' / 'explosion6.png',
     MEDIA / 'explosion' / 'explosion7.png',
-    MEDIA / 'explosion' / 'explosion7.png',
+    # MEDIA / 'explosion' / 'explosion7.png',
     MEDIA / 'explosion' / 'explosion8.png',
-    MEDIA / 'explosion' / 'explosion8.png',
+    # MEDIA / 'explosion' / 'explosion8.png',
     MEDIA / 'explosion' / 'explosion9.png',
-    MEDIA / 'explosion' / 'explosion9.png',
+    # MEDIA / 'explosion' / 'explosion9.png',
     MEDIA / 'explosion' / 'explosion10.png',
-    MEDIA / 'explosion' / 'explosion10.png',
+    # MEDIA / 'explosion' / 'explosion10.png',
     MEDIA / 'explosion' / 'explosion11.png',
-    MEDIA / 'explosion' / 'explosion11.png',
+    # MEDIA / 'explosion' / 'explosion11.png',
     MEDIA / 'explosion' / 'explosion12.png',
-    MEDIA / 'explosion' / 'explosion12.png',
+    # MEDIA / 'explosion' / 'explosion12.png',
 ]
 
 lifes_data = [

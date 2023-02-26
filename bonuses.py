@@ -46,6 +46,14 @@ class BaseBonuseX(pygame.sprite.Sprite):
         self.image = self.surfs[self.index].copy()
         self.rect = self.image.get_rect(center=pos)
 
+    def set_attrs(self, **kwargs):
+        size = kwargs.get('size', None)
+        if size is not None:
+            self.size = size
+            self.pos = self.rect.center
+            self.surfs = list(map(lambda x: pygame.transform.scale(x, size), self.surfs))
+            self.image = self.surfs[self.index]
+            self.rect = self.image.get_rect(x=self.pos[0], y=self.pos[1])
     
     def get_files(self, dir_files):
         dir_files = Path(dir_files)
@@ -96,6 +104,14 @@ class BaseBonuse(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.timer.interval = speed
     
+    def set_attrs(self, **kwargs):
+        size = kwargs.get('size', None)
+        if size is not None:
+            self.size = size
+            self.pos = self.rect.center
+            self.surfs = list(map(lambda x: pygame.transform.scale(x, (size, size)), self.surfs))
+            self.image = self.surfs[self.index]
+            self.rect = self.image.get_rect(x=self.pos[0], y=self.pos[1])
     
     def set_position(self, pos):
         self.pos = pos
@@ -111,7 +127,12 @@ class BaseBonuse(pygame.sprite.Sprite):
                     self.index = 0
                 self.image = self.surfs[self.index]
     
+
+
     
+
+
+
 
 
 if __name__ == "__main__":

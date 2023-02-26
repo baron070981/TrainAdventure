@@ -462,6 +462,11 @@ kwargs:
     def reset_turn(self):
         turn = choice(RWArrow.TURN_FLAGS)
         self.set_turn(turn)
+    
+    
+    def reset_turn2(self):
+        turn = RWEnum.ARROW_TURN_L if self.turn == RWEnum.ARROW_TURN_R else RWEnum.ARROW_TURN_R
+        self.set_turn(turn)
 
 
 class DecorMapElement(BaseMapElements, pygame.sprite.Sprite):
