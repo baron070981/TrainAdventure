@@ -74,8 +74,28 @@ class CoinsInfo(pygame.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
         screen.blit(self.text, (self.text_rect.x, self.text_rect.y))
+
+
+class TimerInfo(pygame.sprite.Sprite):
     
+    def __init__(self, pos) -> None:
+        super().__init__()
+        self.hour = '00'
+        self.minute = '00'
+        self.second = '00'
+        self.pos = pos
+        self.obj_font = pygame.font.Font(None, 48)
+        self.text = self.obj_font.render(f'{self.hour}:{self.minute}:{self.second}', 1, (255, 20, 20))
     
+    def set_value(self, hour=0, minute=0, second=0):
+        self.hour = str(hour) if hour > 9 else f'0{hour}'
+        self.minute = str(minute) if minute > 9 else f'0{minute}'
+        self.second = str(second) if second > 9 else f'0{second}'
+        self.text = self.obj_font.render(f'{self.hour}:{self.minute}:{self.second}', 1, (255, 20, 20))
+    
+    def draw(self, screen):
+        screen.blit(self.text, (self.pos[0], self.pos[1]))
+
 
 
 if __name__ == "__main__":
