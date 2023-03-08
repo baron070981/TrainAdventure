@@ -12,7 +12,7 @@ from menu import *
 from bonuses import *
 import sourcesdata as sd
 from infoprocess import *
-from mtimes import Signal
+from mtimes import Signal,Timer
 import explosions
 
 pygame.init()
@@ -107,6 +107,11 @@ pos = positions.pop()
 heart_bonus = BaseBonuse('heart')
 heart_bonus.init_list(sd.heart_bonus_data,(elems.section_size, elems.section_size), speed=.1)
 
+pos = SCREEN_SIZE[0] // 4, 10
+timer = Timer()
+timer.set_start_value(minutes=3)
+timer_info = TimerInfo(pos)
+
 # 
 ringing_sound = pygame.mixer.Sound(str(sd.ringing_sound))
 shot_sound = pygame.mixer.Sound(str(sd.shot_sound))
@@ -116,6 +121,7 @@ train_sound.set_volume(.5)
 ch  = train_sound.play(-1)
 ch.pause()
 
+TIMER = False
 BONUS_PLAY = True 
 SHOOT = False # флаг разрешающий выстрел(False - можно)
 PLAY_SOUND = False # флаг проигрывания фоновой музыки
@@ -200,6 +206,8 @@ if __name__ == "__main__":
                         loco.set_attrs(size=loco_size)
                         loco.recovery_life()
                         loco.reload_gun()
+                        loco.coins = 0
+                        coins_info.set_value(loco.coins)
                         
                         # список только прямых участков пути
                         straightsections = list(filter(lambda x: x.name in ['line_lr', 'line_tb'], list(rw_group)))
@@ -242,6 +250,9 @@ if __name__ == "__main__":
                         [bonus_group.add(c) for c in coins]
                         MENU = False
                         FLAG = False
+                        TIMER = True
+                        timer.stop()
+                        timer.start()
                         main_bg = bgimage.copy()
             
             else: # если идет игровой цикл
@@ -384,6 +395,14 @@ if __name__ == "__main__":
                 # отрисовка анимации взрыва
                 screen.blit(explosion_surf.image, explosion_surf.rect)
                 explosion_surf.iter_surface()
+            
+            timer.iter_time()
+            h, m, s = timer.get_remaining_time()
+            timer_info.set_value(h, m, s)
+            timer_info.draw(screen)
+            if timer.STOP:
+                LOCO_LIFE = False
+                time.sleep(3)
             
         pygame.display.flip()
         pygame.display.update()
